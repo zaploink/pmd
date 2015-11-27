@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<ruleset name="zaploink's custom PMD rules" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+	<description>Zaploink's Custom Rule Set</description>
+      
+	<!-- Arguments for message: $0 = import statement that refers to a domain-private class -->
+	<rule name="ReferenceToInternal"
+		message="Reference to internal class of module ''{0}'': {1}"
+		class="org.zaploink.pmd.rules.intref.ReferenceToInternal">
+		<description>Do not use internal classes of a module outside of that module's boundaries.</description>
+		<priority>3</priority>
+		<example>
+	Given the following packages:
+	
+	package services.foo:
+		FooService
+		Foo
+	package services.foo.internal:
+		FooHelper
+		Bar
+		Baz
+	package storage.foo;
+		FooRepository
+		FooData
+	package storage.foo.bar;
+		BarData
+		...
+		
+	If "storage.foo" and "services.foo.internal" are declared as internal packages of the
+	module/domain "foo" (using the ReferenceToInternal rule's configuration) then
+	any import of those packages (or packages below them) will be marked as invalid by
+	this rule as shown below.
+	
+	package mypackage;
+	
+	import services.foo.FooService; 		// (1) ok
+	import services.foo.Foo; 				// (2) ok
+	import services.foo.internal.FooHelper;	// (3) invalid reference
+	import storage.foo.FooRepository; 		// (4) invalid reference
+	import storage.foo.FooData;				// (5) invalid reference
+	
+	public class MyClass { ...
+	
+	If - although generally not recommended - some internal classes will be exposed
+	on a module's public API, exceptions can be defined in the rule's configuration by
+	addint such classes explicitly to the public part of a domain/module's API.
+	For example, FooData storage classes (plain Pojo's) might be declared public, 
+	in which case import #5 will be considered ok.
+		</example>
+	</rule>
+	
+</ruleset>

@@ -1,0 +1,18 @@
+TODO:
+- write readme
+	- usage example (a project with pmd config + zaploink config)
+	- explain rule config format
+	- explain setup (add zaploink rules to classpath, set system property, select rule set)
+		- explain adding of system property to PMD
+		- explain adding zaploink-custom rules to gradle pmd classpath + gradle pmd config
+		- currently there is only one zaploink rule, so the whole set can be added
+		- also needs gson on classpath!
+		
+- create exampes
+	- simple: automatic domain recognition
+	- simple with exceptions (additional internal packages, make some internal classes public)
+	- completely custom (put domain together)
+	
+	
+OTHER STUFF:
+- http://mrhaki.blogspot.ch/2015/04/gradle-goodness-use-git-commit-id-in.html

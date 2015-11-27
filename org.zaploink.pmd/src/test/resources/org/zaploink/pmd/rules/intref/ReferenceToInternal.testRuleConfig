@@ -1,0 +1,31 @@
+{
+	"version" : 1,
+	
+	"automaticDomainRecognition" : {
+		"publicPackages" : [ "com\\.acme\\.service\\.([^\\.]+)", "com\\.legacy\\.pub\\.([^\\.]+)" ],
+		"privatePackages" : [ "com\\.acme\\.service\\.([^\\.]+)\\..+", "com\\.legacy\\.priv.([^\\.]+)(?:\\..+)?" ]
+	},
+
+	"explicitDomainDeclarations" : {
+		"foo" : {
+			"publicParts" : {
+				"packages" : [ "com.acme.service.foo.extra", "com.acme.import.foo" ],
+				"classes" : [ "com.acme.facade.import.FooImport" ]
+			},
+			"privateParts" : {
+				"packages" : [ "com.acme.storage.foo.data", "com.acme.storage.foo" ],
+				"classes" : [ "com.acme.storage.db.FooDAO" ]
+			}
+		},
+		"bar" : {
+			"publicParts" : {
+				"packages" : [ "com.acme.service.bar.addon" ],
+				"classes" : []
+			},
+			"privateParts" : {
+				"packages" : [],
+				"classes" : []
+			}		
+		}
+	}
+}

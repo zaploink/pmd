@@ -1,0 +1,36 @@
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'eclipse'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+	pmd project('org.zaploink.pmd') // in a real example this would refer the jar
+	pmd 'com.google.code.gson:gson:2.4'
+	pmd 'net.sourceforge.pmd:pmd-core:5.4.0'
+	pmd 'net.sourceforge.pmd:pmd-java:5.4.0'
+}
+
+eclipse {
+    classpath {
+         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+         containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
+}
+
+pmd {
+	consoleOutput true
+	ignoreFailures true
+	ruleSets = [ "java-basic" , "zaploink-custom" ]
+}
+
+pmdMain.doFirst {
+	File configFile = file("pmd-ext/ReferenceToInternal.ruleConfig");
+	System.setProperty("org.zaploink.pmd.intref.configFile", configFile.absolutePath)
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
