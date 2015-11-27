@@ -1,0 +1,2 @@
+# pmd
+Custom PMD Rules
