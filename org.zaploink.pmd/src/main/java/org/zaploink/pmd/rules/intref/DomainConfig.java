@@ -22,7 +22,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 
 public class DomainConfig {
-	private static final String PROPERTY_OODU_FILE = "org.zaploink.pmd.intref.configFile";
+	private static final String CONFIG_FILE_PROPERTY = "org.zaploink.pmd.intref.configFile";
 	private static final Gson GSON = new Gson();
 
 	private final List<Pattern> publicPackageRecs = new ArrayList<>();
@@ -42,9 +42,9 @@ public class DomainConfig {
 	}
 
 	public static final DomainConfig readConfig() {
-		String filePath = System.getProperty(PROPERTY_OODU_FILE);
+		String filePath = System.getProperty(CONFIG_FILE_PROPERTY);
 		if (filePath == null) {
-			throw new RuntimeException("Missing rule config system property: " + PROPERTY_OODU_FILE);
+			throw new RuntimeException("Missing rule config system property: " + CONFIG_FILE_PROPERTY);
 		}
 		Path configFile = Paths.get(filePath);
 		if (!Files.exists(configFile)) {
