@@ -1,0 +1,31 @@
+{
+	"version" : 1,
+	
+	"automaticDomainRecognition" : {
+		"publicPackages" : [ "com\\.example[0-9]\\.service\\.([^\\.]+)" ],
+		"privatePackages" : [ "com\\.example[0-9]\\.service\\.([^\\.]+)\\..*"  ]
+	},
+
+	"explicitDomainDeclarations" : {
+		"foo" : {
+			"publicParts" : {
+				"packages" : [],
+				"classes" : [ "com.example2.storage.foo.FooData" ]
+			},
+			"privateParts" : {
+				"packages" : [ "com.example2.storage.foo" ],
+				"classes" : []
+			}
+		},
+		"legacy-foo" : {
+			"publicParts" : {
+				"packages" : [ "com.example3.legacy.access.foo" ],
+				"classes" : [ "com.example3.legacy.mixed.api.LegacyFoo", "com.example3.legacy.mixed.api.LegacyBar" ]
+			},
+			"privateParts" : {
+				"packages" : [ "com.example3.legacy" ],
+				"classes" : []
+			}
+		}
+	}
+}

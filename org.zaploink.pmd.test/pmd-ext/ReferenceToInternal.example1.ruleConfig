@@ -1,0 +1,8 @@
+{
+	"version" : 1,
+	
+	"automaticDomainRecognition" : {
+		"publicPackages" : [ "com\\.example1\\.service\\.([^\\.]+)" ],
+		"privatePackages" : [ "com\\.example1\\.service\\.([^\\.]+)\\..*"  ]
+	}
+}

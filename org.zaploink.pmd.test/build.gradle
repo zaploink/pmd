@@ -27,7 +27,10 @@ pmd {
 }
 
 pmdMain.doFirst {
-	File configFile = file("pmd-ext/ReferenceToInternal.ruleConfig");
+	File configFile = file("pmd-ext/ReferenceToInternal.allExamplesCombined.ruleConfig");
+//	File configFile = file("pmd-ext/ReferenceToInternal.example1.ruleConfig");
+//	File configFile = file("pmd-ext/ReferenceToInternal.example2.ruleConfig");
+//	File configFile = file("pmd-ext/ReferenceToInternal.example3.ruleConfig");
 	System.setProperty("org.zaploink.pmd.intref.configFile", configFile.absolutePath)
 }
 

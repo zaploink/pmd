@@ -1,0 +1,21 @@
+{
+	"version" : 1,
+	
+	"automaticDomainRecognition" : {
+		"publicPackages" : [ "com\\.example2\\.service\\.([^\\.]+)" ],
+		"privatePackages" : [ "com\\.example2\\.service\\.([^\\.]+)\\..*"  ]
+	},
+
+	"explicitDomainDeclarations" : {
+		"foo" : {
+			"publicParts" : {
+				"packages" : [],
+				"classes" : [ "com.example2.storage.foo.FooData" ]
+			},
+			"privateParts" : {
+				"packages" : [ "com.example2.storage.foo" ],
+				"classes" : []
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"version" : 1,
+	
+	"automaticDomainRecognition" : {
+		"publicPackages" : [],
+		"privatePackages" : []
+	},
+
+	"explicitDomainDeclarations" : {
+		"legacy-foo" : {
+			"publicParts" : {
+				"packages" : [ "com.example3.legacy.access.foo" ],
+				"classes" : [ "com.example3.legacy.mixed.api.LegacyFoo", "com.example3.legacy.mixed.api.LegacyBar" ]
+			},
+			"privateParts" : {
+				"packages" : [ "com.example3.legacy" ],
+				"classes" : []
+			}
+		}
+	}
+}
