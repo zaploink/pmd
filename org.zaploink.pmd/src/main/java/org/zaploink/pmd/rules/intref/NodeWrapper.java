@@ -53,6 +53,7 @@ public class NodeWrapper {
 	 * Checks the dependency of this domain to the given other domain.
 	 *
 	 * @param otherNode
+	 *            referenced node
 	 * @return <code>true</code> if OK, <code>false</code> otherwise (i.e. not permitted)
 	 */
 	public boolean checkDependencyTo(NodeWrapper otherNode) {
