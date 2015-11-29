@@ -3,3 +3,4 @@ build/
 .gradle/
 lib-dist/
 .classpath
+gradle.properties

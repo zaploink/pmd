@@ -1,15 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-ext {
-	isBeta = true;
-	beta = (isBeta ? '-BETA' : '')
-	distDir = file('lib-dist')
-}
+// -------------------- variables --------------------
 
-version = "0.1.0" + beta;
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+group = 'org.zaploink'
+archivesBaseName = 'zaploink-pmd'
+version = '0.1.0-SNAPSHOT'
+
+// -------------------- dependencies --------------------
 
 repositories {
     jcenter()
@@ -23,6 +26,24 @@ dependencies {
   	testCompile 'junit:junit:4.12'
 }
 
+// -------------------- tasks --------------------
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+// -------------------- configurations --------------------
+
 eclipse {
     classpath {
          containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
@@ -30,10 +51,54 @@ eclipse {
     }
 }
 
-jar {
-	destinationDir distDir
+artifacts {
+    archives sourcesJar, javadocJar
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name "Zaploink's Custom PMD Rules"
+        packaging 'jar'
+        description 'A set of custom PMD rules for Java.'
+        url 'https://github.com/zaploink/pmd'
+
+        scm {
+          connection 'scm:git:git@github.com:zaploink/pmd.git'
+          developerConnection 'scm:git:git@github.com:zaploink/pmd.git'
+          url 'https://github.com/zaploink/pmd'
+        }
+
+        licenses {
+          license {
+            name 'The MIT License (MIT)'
+            url 'https://zaploink.mit-license.org'
+          }
+        }
+
+        developers {
+          developer {
+            id 'zaploink'
+            name 'Kaspar von Gunten'
+            email 'zaploink@code.zaploink.org'
+          }
+        }
+      }
+    }
+  }
 }
