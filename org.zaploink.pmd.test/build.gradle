@@ -4,11 +4,11 @@ apply plugin: 'eclipse'
 
 repositories {
     jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 dependencies {
-	pmd project('org.zaploink.pmd') // in a real example this would refer the jar
-	pmd 'com.google.code.gson:gson:2.4'
+	pmd 'org.zaploink:zaploink-pmd:0.1.0-SNAPSHOT'
 	pmd 'net.sourceforge.pmd:pmd-core:5.4.0'
 	pmd 'net.sourceforge.pmd:pmd-java:5.4.0'
 }

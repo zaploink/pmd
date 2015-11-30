@@ -85,9 +85,9 @@ You can drop the `automaticDomainRecognition` section of the rule config complet
 See `org.zaploink.pmd.test`project.
 
 # Installation
-1. The `org.zaploink.pmd`JAR needs to be added to the PMD classpath. The `ReferenceToInternal`Rule requires [GSON](https://github.com/google/gson) to parse the rule configuration, therefore GSON must also be added to the classpath of PMD.
+1. The `zaploink-pmd`JAR needs to be added to the PMD classpath. The `ReferenceToInternal` Rule requires [GSON](https://github.com/google/gson) to parse the rule configuration, therefore GSON must also be added to the classpath of PMD.
 
-1. To enable the zaploink custom rule set you must add `zaploink-custom` to your PMD rule set configuration.
+1. To enable the Zaploink custom rule set you must add `zaploink-custom` to your PMD rule set configuration.
 
 1. Finally, to point the `ReferenceToInternal` Rule to *your* domain configuration file you must set the system property `org.zaploink.pmd.intref.configFile` before invoking PMD.
 
@@ -105,9 +105,9 @@ java
   -R java-basic,zaploink-custom \
   -language java
 ```
-Alternatively you can add the `zaploink-pmd-xx.jar` and `gson-xx.jar` explicitly to the classpath of PMD (make sure to use the correct classpath separator, i.e. `;` on Windows and `:` on Unix). 
+Alternatively you can add the `zaploink-pmd-xx.jar` and `gson-xx.jar` explicitly to the classpath of PMD (make sure to use the correct classpath separator, i.e. `;` on Windows and `:` on Unix).
 
-==Note:== Both JAR-Files are available from Maven Central: [gson.jar](http://mvnrepository.com/artifact/com.google.code.gson/gson), [zaploink-pmd.jar](http://mvnrepository.com/artifact/org.zaploink/zaploink-pmd)
+++Note:++ Both JAR-Files are available from Maven Central: [gson.jar](http://mvnrepository.com/artifact/com.google.code.gson/gson), [zaploink-pmd.jar](http://mvnrepository.com/artifact/org.zaploink/zaploink-pmd)
 
 ## Run PMD with Gradle
 
@@ -144,5 +144,5 @@ pmdMain.doFirst {
 
 The easiest way to debug PMD and any custom rule code is to set up a debug launch configuration that calls the PMD main class with all the necessary arguments. Make sure you put the custom rule code on the class path.
 
-==Note:== An example debug configuration for Eclipse can be found in the `org.zaploink.pmd.test` project, see the `PMD-debugging.launch` file.
+++Note:++ An example debug configuration for Eclipse can be found in the `org.zaploink.pmd.test` project, see the `PMD-debugging.launch` file.
 
