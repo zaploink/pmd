@@ -36,7 +36,7 @@ A very simple rule configuration can enforce this policy:
 
 The two regular expressions will correctly identify the classes `com.acme.customers.CustomerService` and `com.acme.customers.internal.storage.CustomerDatabase` as belonging to the *public* and *private* parts of the domain *customers*, respectively. While import of `CustomerService` will be legal anywhere in the code, imports of `CustomerDatabase` will only be permitted within classes of the *customers* domain.
 
-==Note==: You can add more than one regular expression to identify public and private packages (e.g. to support multiple naming schemes). All of them must have exactly one _capturing group_ that will be interpreted as a *domain name* in order to identify public and private classes of the same domain. If you need another group, e.g. to express sub-package alternatives such as *either* `internal` *or* `impl`, then use a non-capturing group for those: `com\\.acme\\.([^\\.]+)\\.(?:internal|impl)\\..*`.
+++Note++: You can add more than one regular expression to identify public and private packages (e.g. to support multiple naming schemes). All of them must have exactly one _capturing group_ that will be interpreted as a *domain name* in order to identify public and private classes of the same domain. If you need another group, e.g. to express sub-package alternatives such as *either* `internal` *or* `impl`, then use a non-capturing group for those: `com\\.acme\\.([^\\.]+)\\.(?:internal|impl)\\..*`.
 
 ####Example 2
 You can extend and/or replace the *automaticDomainRecognition* with explicitly listed packages and classes that are outside your naming scheme.
@@ -139,6 +139,14 @@ pmdMain.doFirst {
 	System.setProperty("org.zaploink.pmd.intref.configFile", configFile.absolutePath)
 }
 ```
+
+## Run zaploink-pmd Rules in Eclipse
+
+There are currently two Eclipse Plugins for PMD:
+- [PMD Eclipse Plugin](https://github.com/pmd/pmd-eclipse-plugin) by pmd
+- [Acanda Eclipse PMD](http://acanda.github.io/eclipse-pmd/) by Philip Graf
+
+++Note++: ==Support for both plugins will soon be added with a respective plugin-Fragment, see [this issue](https://github.com/zaploink/pmd/issues/1).==
 
 # Debugging
 
