@@ -148,9 +148,18 @@ There are currently two Eclipse Plugins for PMD:
 
 ++Note++: ==Support for both plugins will soon be added with a respective plugin-Fragment, see [this issue](https://github.com/zaploink/pmd/issues/1).==
 
+### Restrictions
+It is not possible to specify a system property when running PMD in Eclipse. Hence the only way to configure the Zaploink rules is to provide a file in `.zaploink-pmd/ReferenceToInternal.ruleConfig` file in your home directory.
+
+Since this will be a _global_ file it is not possible to have individual module declarations for different projects. You'll have to merge all your individual module declarations into one configuration file.
+
 # Debugging
 
 The easiest way to debug PMD and any custom rule code is to set up a debug launch configuration that calls the PMD main class with all the necessary arguments. Make sure you put the custom rule code on the class path.
 
 ++Note:++ An example debug configuration for Eclipse can be found in the `org.zaploink.pmd.test` project, see the `PMD-debugging.launch` file.
+
+# License
+
+MIT: [zaploink.mit-license.org](http://zaploink.mit-license.org/2015/license.txt)
 

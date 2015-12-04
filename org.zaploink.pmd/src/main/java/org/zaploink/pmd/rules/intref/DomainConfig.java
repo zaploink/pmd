@@ -6,13 +6,17 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.zaploink.pmd.rules.Zaploink;
 import org.zaploink.pmd.rules.intref.NodeWrapper.Type;
 import org.zaploink.pmd.rules.intref.RuleConfig.DomainDeclaration;
 
@@ -22,7 +26,11 @@ import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 
 public class DomainConfig {
-	private static final String CONFIG_FILE_PROPERTY = "org.zaploink.pmd.intref.configFile";
+
+	private static final Logger LOGGER = Zaploink.getLogger();
+	private static final String RULE_NAME = ReferenceToInternal.class.getSimpleName();
+	private static final String CONFIG_PROP = "org.zaploink.pmd.intref.configFile";
+	private static final String CONFIG_FILE = "ReferenceToInternal.ruleConfig";
 	private static final Gson GSON = new Gson();
 
 	private final List<Pattern> publicPackageRecs = new ArrayList<>();
@@ -42,16 +50,38 @@ public class DomainConfig {
 	}
 
 	public static final DomainConfig readConfig() {
-		String filePath = System.getProperty(CONFIG_FILE_PROPERTY);
-		if (filePath == null) {
-			throw new RuntimeException("Missing rule config system property: " + CONFIG_FILE_PROPERTY);
+		Path configFile = readConfigFileFromSystemProperty();
+		if (configFile == null) {
+			configFile = readConfigFileFromUserHome();
 		}
-		Path configFile = Paths.get(filePath);
 		if (!Files.exists(configFile)) {
 			throw new RuntimeException("Missing rule config file: " + configFile);
 		}
 
 		return readConfig(configFile);
+	}
+
+	private static Path readConfigFileFromSystemProperty() {
+		String filePath = System.getProperty(CONFIG_PROP);
+		if (filePath == null) {
+			String msg = MessageFormat.format("{0} config system property not defined: {1}", RULE_NAME, CONFIG_PROP);
+			LOGGER.log(Level.FINE, msg);
+			return null;
+		}
+		return Paths.get(filePath);
+	}
+
+	private static Path readConfigFileFromUserHome() {
+		String userHome = System.getProperty("user.home");
+		Path filePath = Paths.get(userHome, Zaploink.ZAPLOINK_DIR, CONFIG_FILE);
+		if (!Files.exists(filePath)) {
+			String msg = MessageFormat.format("{0} config file not found in $USER_HOME: {1}", RULE_NAME, filePath);
+			LOGGER.log(Level.INFO, msg);
+			return null;
+		}
+		String msg = MessageFormat.format("{0} config file found in $USER_HOME: {1}", RULE_NAME, filePath);
+		LOGGER.log(Level.FINE, msg);
+		return filePath;
 	}
 
 	public static DomainConfig readConfig(Path configFile) {

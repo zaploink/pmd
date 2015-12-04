@@ -1,7 +1,12 @@
 package org.zaploink.pmd.rules.intref;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.zaploink.pmd.rules.Zaploink;
 
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -17,25 +22,29 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
  * @author chb
  */
 public class ReferenceToInternal extends AbstractJavaRule {
-	private static final String CONFIG = "ReferenceToInternal.ruleConfig";
+	private static final Logger LOGGER = Zaploink.getLogger();
+	private static final String CONFIG_KEY = "ReferenceToInternal.ruleConfig";
+	private static final DomainConfig RULE_CONFIG = DomainConfig.readConfig();
 
 	private String packageName;
 	private List<NodeWrapper> imports;
 
 	@Override
 	public void start(RuleContext ctx) {
+		String ruleName = ReferenceToInternal.class.getSimpleName();
 		try {
-			DomainConfig config = DomainConfig.readConfig();
-			ctx.setAttribute(CONFIG, config);
+			ctx.setAttribute(CONFIG_KEY, RULE_CONFIG);
+			LOGGER.log(Level.FINE, "Successfully loaded config for {0} rule.", ruleName);
 		}
 		catch (Exception ex) {
-			System.err.println(ex);
+			String msg = MessageFormat.format("Could not load configuration for {0} rule.", ruleName);
+			LOGGER.log(Level.SEVERE, msg, ex);
 		}
 		super.start(ctx);
 	}
 
 	private DomainConfig getConfig(Object ctx) {
-		return ((DomainConfig) ((RuleContext) ctx).getAttribute(CONFIG));
+		return ((DomainConfig) ((RuleContext) ctx).getAttribute(CONFIG_KEY));
 	}
 
 	@Override
@@ -83,7 +92,7 @@ public class ReferenceToInternal extends AbstractJavaRule {
 
 	@Override
 	public void end(RuleContext ctx) {
-		ctx.removeAttribute(CONFIG);
+		ctx.removeAttribute(CONFIG_KEY);
 		super.end(ctx);
 	}
 
