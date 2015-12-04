@@ -11,5 +11,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="net.sourceforge.pmd.PMD"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-dir ../org.zaploink.pmd.test/src/main/java -format text -R zaploink-custom -language java"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.zaploink.pmd"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.zaploink.pmd.intref.configFile=../org.zaploink.pmd.test/pmd-ext/ReferenceToInternal.ruleConfig"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.zaploink.pmd.intref.configFile=../org.zaploink.pmd.test/pmd-ext/ReferenceToInternal.allExamplesCombined.ruleConfig"/>
 </launchConfiguration>
