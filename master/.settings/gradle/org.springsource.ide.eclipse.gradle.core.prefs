@@ -1,0 +1,4 @@
+#org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
+#Sun Dec 06 21:37:52 CET 2015
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../org.zaploink.eclipse.pmd.acanda.fragment;../org.zaploink.pmd;../org.zaploink.pmd.test;
+org.springsource.ide.eclipse.gradle.rootprojectloc=

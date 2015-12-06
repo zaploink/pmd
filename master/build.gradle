@@ -1,0 +1,22 @@
+// -------------------- dependencies --------------------
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+}
+
+// -------------------- common setup -------------------
+
+allprojects {
+}
+
+subprojects {
+}
+
+// -------------------- tasks --------------------------
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}

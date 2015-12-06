@@ -4,13 +4,19 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 // -------------------- variables --------------------
+ext {
+ 	releaseVersion = '0.1.0'
+	snapshot = true
+	osgiBundleVersion = releaseVersion + (snapshot ? '.snapshot' : '')
+	fragmentOutputDir = 'eclipse-plugin-fragments'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 group = 'org.zaploink'
 archivesBaseName = 'zaploink-pmd'
-version = '0.1.0-SNAPSHOT'
+version = releaseVersion + (snapshot ? '-SNAPSHOT' : '')
 
 // -------------------- dependencies --------------------
 
@@ -40,6 +46,28 @@ task javadocJar(type: Jar) {
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from sourceSets.main.allSource
+}
+
+task eclipsePluginFragmentAcanda(type: Jar) {
+	description 'Creates a plugin-fragment with custom rules for the Acanda Eclipse-Plugin.'
+	
+	from {
+	    configurations.compile
+	    	.filter { it.name.startsWith('gson') }
+	    	.collect { zipTree(it) }
+	  }
+	with jar
+	// might want to use OSGI plugin later: https://docs.gradle.org/current/userguide/osgi_plugin.html
+	// manifest merging is described here: https://docs.gradle.org/current/userguide/java_plugin.html
+	manifest {
+		from ('../org.zaploink.eclipse.pmd.acanda.fragment/META-INF/MANIFEST.MF') {
+			// the attributes defined below (=base manifest) should win
+			eachEntry { it.value = (it.baseValue != null) ? it.baseValue : it.mergeValue }
+		}
+		attributes 'Bundle-Version' : osgiBundleVersion
+	}	
+	archiveName "org.zaploink.eclipse.pmd.acanda.fragment-${osgiBundleVersion}.jar"
+	destinationDir file(fragmentOutputDir);
 }
 
 // -------------------- configurations --------------------

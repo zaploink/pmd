@@ -1,5 +1,4 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Fri Nov 27 16:26:53 CET 2015
-build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;
+#Sun Dec 06 21:37:52 CET 2015
 org.springsource.ide.eclipse.gradle.linkedresources=
-org.springsource.ide.eclipse.gradle.rootprojectloc=../org.zaploink.pmd.test
+org.springsource.ide.eclipse.gradle.rootprojectloc=../master

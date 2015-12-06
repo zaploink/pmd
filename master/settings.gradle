@@ -1,0 +1,3 @@
+includeFlat 'org.zaploink.pmd'
+includeFlat 'org.zaploink.pmd.test'
+includeFlat 'org.zaploink.eclipse.pmd.acanda.fragment'
