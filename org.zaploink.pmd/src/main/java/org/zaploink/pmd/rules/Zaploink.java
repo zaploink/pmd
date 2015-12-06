@@ -20,7 +20,7 @@ import java.util.logging.SimpleFormatter;
 /**
  * Some static setup (e.g. logging)
  *
- * @author chb
+ * @author kvg
  */
 public class Zaploink {
 	public static final String ZAPLOINK_DIR = ".zaploink-pmd";

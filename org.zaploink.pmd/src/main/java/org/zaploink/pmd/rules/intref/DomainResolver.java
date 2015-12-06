@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.zaploink.pmd.rules.intref.DomainElement.Type;
-import org.zaploink.pmd.rules.intref.RuleConfigData.DomainDeclaration;
+import org.zaploink.pmd.rules.intref.config.RuleConfigData;
+import org.zaploink.pmd.rules.intref.config.RuleConfigData.DomainDeclaration;
 
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;

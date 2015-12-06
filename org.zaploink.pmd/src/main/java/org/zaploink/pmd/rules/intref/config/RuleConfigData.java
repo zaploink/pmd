@@ -1,4 +1,4 @@
-package org.zaploink.pmd.rules.intref;
+package org.zaploink.pmd.rules.intref.config;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.Map;
 }
  * </pre>
  *
- * @author chb
+ * @author kvg
  *
  */
 public class RuleConfigData {

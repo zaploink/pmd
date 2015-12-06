@@ -7,7 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.zaploink.pmd.rules.Zaploink;
-import org.zaploink.pmd.rules.intref.RuleConfigReader.RuleConfigReaderException;
+import org.zaploink.pmd.rules.intref.config.RuleConfigData;
+import org.zaploink.pmd.rules.intref.config.RuleConfigReader;
+import org.zaploink.pmd.rules.intref.config.RuleConfigReaderException;
 
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceDeclaration;
@@ -20,7 +22,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
  *
  * This rule needs an external configuration of the format {@link RuleConfigData}.
  *
- * @author chb
+ * @author kvg
  */
 public class ReferenceToInternal extends AbstractJavaRule {
 	private static final Logger LOGGER = Zaploink.getLogger();
