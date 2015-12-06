@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Zaploink PMD Rules for Acanda PMD Plugin
+Bundle-SymbolicName: org.zaploink.eclipse.pmd.acanda.fragment;singleton:=true
+Bundle-Version: 1.0.0
+Fragment-Host: ch.acanda.eclipse.pmd.core;bundle-version="1.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: Zaploink.org
+Require-Bundle: org.eclipse.e4.ui.dialogs;bundle-version="1.0.0"
+Import-Package: org.eclipse.ui.dialogs
