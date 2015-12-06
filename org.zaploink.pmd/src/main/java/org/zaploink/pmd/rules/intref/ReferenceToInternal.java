@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.zaploink.pmd.rules.Zaploink;
+import org.zaploink.pmd.rules.ZaploinkPMD;
 import org.zaploink.pmd.rules.intref.config.RuleConfigData;
 import org.zaploink.pmd.rules.intref.config.RuleConfigReader;
 import org.zaploink.pmd.rules.intref.config.RuleConfigReaderException;
@@ -25,7 +25,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
  * @author kvg
  */
 public class ReferenceToInternal extends AbstractJavaRule {
-	private static final Logger LOGGER = Zaploink.getLogger();
+	private static final Logger LOGGER = ZaploinkPMD.getLogger();
 	private static final String CONFIG_KEY = "ReferenceToInternal.ruleConfig";
 	private static final DomainResolver DOMAIN_RESOLVER;
 

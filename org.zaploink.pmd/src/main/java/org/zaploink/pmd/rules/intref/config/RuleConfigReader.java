@@ -10,7 +10,7 @@ import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.zaploink.pmd.rules.Zaploink;
+import org.zaploink.pmd.rules.ZaploinkPMD;
 import org.zaploink.pmd.rules.intref.ReferenceToInternal;
 
 import com.google.gson.Gson;
@@ -57,7 +57,7 @@ public class RuleConfigReader {
 
 	public static class DefaultStrategy implements RuleConfigReaderStrategy {
 
-		private static final Logger LOGGER = Zaploink.getLogger();
+		private static final Logger LOGGER = ZaploinkPMD.getLogger();
 		private static final String RULE_NAME = ReferenceToInternal.class.getSimpleName();
 		private static final String CONFIG_PROP = "org.zaploink.pmd.intref.configFile";
 		private static final String CONFIG_FILE = "ReferenceToInternal.ruleConfig";
@@ -92,7 +92,7 @@ public class RuleConfigReader {
 
 		private Path readConfigFileFromUserHome() {
 			String userHome = System.getProperty("user.home");
-			Path filePath = Paths.get(userHome, Zaploink.ZAPLOINK_DIR, CONFIG_FILE);
+			Path filePath = Paths.get(userHome, ZaploinkPMD.ZAPLOINK_CONFIG_DIR, CONFIG_FILE);
 			if (!Files.exists(filePath)) {
 				String msg = MessageFormat.format("{0} config file not found in $USER_HOME: {1}", RULE_NAME, filePath);
 				LOGGER.log(Level.INFO, msg);
