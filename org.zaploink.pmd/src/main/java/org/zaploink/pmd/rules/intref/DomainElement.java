@@ -2,7 +2,7 @@ package org.zaploink.pmd.rules.intref;
 
 import net.sourceforge.pmd.lang.ast.Node;
 
-public class NodeWrapper {
+public class DomainElement {
 	public enum Type {
 		PRIVATE, PUBLIC
 	};
@@ -13,7 +13,7 @@ public class NodeWrapper {
 	private String domain;
 	private Type type;
 
-	public NodeWrapper(Node node, String nodeName, String packageName) {
+	public DomainElement(Node node, String nodeName, String packageName) {
 		this.node = node;
 		this.nodeName = nodeName;
 		this.packageName = packageName;
@@ -56,12 +56,12 @@ public class NodeWrapper {
 	 *            referenced node
 	 * @return <code>true</code> if OK, <code>false</code> otherwise (i.e. not permitted)
 	 */
-	public boolean checkDependencyTo(NodeWrapper otherNode) {
+	public boolean checkDependencyTo(DomainElement otherNode) {
 		// must either be same domain or - if different domain - reference to other domain must be public
 		return this.isSameDomainAs(otherNode) || otherNode.isPublic();
 	}
 
-	private boolean isSameDomainAs(NodeWrapper otherDomain) {
+	private boolean isSameDomainAs(DomainElement otherDomain) {
 		if (this.domain == null) {
 			return false;
 		}
