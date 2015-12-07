@@ -123,7 +123,6 @@ repositories {
 
 dependencies {
 	pmd 'org.zapoink:zaploink-pmd:0.1.0'  // the zaploink pmd rules
-	pmd 'com.google.code.gson:gson:2.4'   // required by zaploink-pmd to parse project-specific rule config
 	pmd 'net.sourceforge.pmd:pmd-core:5.4.0'
 	pmd 'net.sourceforge.pmd:pmd-java:5.4.0'
 }
@@ -161,5 +160,4 @@ The easiest way to debug PMD and any custom rule code is to set up a debug launc
 
 # License
 
-MIT: [zaploink.mit-license.org](http://zaploink.mit-license.org/2015/license.txt)
-
+MIT: [zaploink.mit-license.org]
